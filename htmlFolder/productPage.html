@@ -9,29 +9,50 @@
 </head>
 <header><h1>Tee&Zee</h1>
 </header>
-<nav>
-    <!-- <a href="/index.html">Home</a> -->
-    <!-- <a href="/htmlFolder/about.html">About</a>
+
+
+   <nav>
+     <a href="/index.html">Home</a>
+     <a href="/htmlFolder/about.html">About</a>
     <a href="/htmlFolder/productPage.html">Shop</a>
     <a href="/htmlFolder/adminPage.html">Admin</a>
     <a href="/htmlFolder/contactPage.html">Contacts</a>
-    <a href="/htmlFolder/checkoutPage.html">Checkout</a> -->
+    <a href="/htmlFolder/checkoutPage.html">Checkout</a> 
+</nav>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
+          
+          </div>
           <form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-dark" type="submit">Search</button>
           </form>
         </div>
+       <div class="btn-group sort-btn">
+            <button class="btn btn-outline-dark" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+
+
+            
+          </div>
+        </div>
       </nav>
-</nav>
+
 <body>
-    <main>
-<div class="content">
-  <H2>Shop</H2>
+    <main class="product">
+      <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Name:</p>
+          <p class="card-text">Description:</p>
+          <p class="card-text">Price:</p>
+          <p class="card-text">Sizes:</p>
 
-</div>
-
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+       
+ 
     </main>
 
     <script link="/Scripts/productPage.js"></script>
