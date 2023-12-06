@@ -35,8 +35,49 @@ localStorage.setItem("products", JSON.stringify(products))
 // now turn string into an array and set the items from localstorage into an array.
 products=JSON.parse(localStorage.getProduct("products"))
 
-// create a table and ensure that your html admin page(th-mainly headings) has a table containing the products and their associated properties.
-// use .map function to loop through the array.
-// use QuerySelector to display the table in html and .map to write the information.
-let table = document.querySelector('table')
+// create a table and ensure that your html admin page has a table containing the products and their associated properties.
+// use .map function to loop through the array and write the information
+// use QuerySelector to display the table in html 
+let table = document.querySelector('table');
+
+window.onload = function thisFuntion() {
+    // Assuming 'items' is your array of products
+    let table = document.querySelector('table');
+
+    // Assuming 'items' is your array of products retrieved from localStorage
+    let items = JSON.parse(localStorage.getItem("products"));
+
+    // Function to generate table rows for each product
+    function generateTableRows(items) {
+        return items.map(function (item, index) {
+            return `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.Name}</td>
+                    <td>R${item.Price}</td>
+                    <td>${item.Description}</td>
+                    <td><img src="${item.Url}" style="max-width: 100px;"></td>
+                    <td><button>Edit</button></td>
+                    <td><button class='delete' value='${index}'>Del</button></td>
+                </tr>
+            `;
+        }).join('');
+    }
+
+    // Generate table rows and append them to the table
+    table.innerHTML = generateTableRows(items);
+
+    // Example event listener for delete button
+    table.addEventListener('click', function (event) {
+        if (event.target.classList.contains('delete')) {
+            let index = event.target.value;
+            // Perform delete operation for the product at the given index
+            items.splice(index, 1);
+            // Update the localStorage after deletion
+            localStorage.setItem("products", JSON.stringify(items));
+            // Regenerate the table rows after deletion
+            table.innerHTML = generateTableRows(items);
+        }
+    });
+};
 
