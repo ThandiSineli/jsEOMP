@@ -1,31 +1,39 @@
-// Fetch items from localStorage
-let items = JSON.parse(localStorage.getItem('item')) || [];
+// get products from the adminpage(pull items)
+// you need a an empty array for the items
+let purchaseditems = []
+let main = document.querySelector('main')
+// get products from the localstorage in order for the products on the page to depent on what is shown  or removed in the admin page.
 
-// Display items on the product page
-let main = document.querySelector('main');
-main.innerHTML = items.map(function (item, index) {
+let products = JSON.parse(localStorage.getItem('products'))
+// for every object in the array you must include a div for for all items
+main.innerHTML =  products.map(function(item, index){
+     
     return `
-        <div>
-            <h2>${item.name}</h2>
-            <p><img src='${item.url}'></p>
-            <p>${item.description}</p>
-            <p>${item.price}</p>
-            <button value='${index}' data-add>Add to cart</button>
-        </div>
-    `;
-}).join('');
+    <div>
+        <h2>${item.name}</h2>
+        <p><img src = '${item.url}'></p>
+        <p>${item.description}</p>
+        <p>${item.price}</p>
 
-// Function to add an item to the cart
-function add(index) {
-    let purchased = JSON.parse(localStorage.getItem('purchased')) || [];
-    purchased.push(items[index]);
-    localStorage.setItem('purchased', JSON.stringify(purchased));
+        <button value = '${index}' data-add>Add to cart</button>
+    </div>
+`
+
+   
+}).join('')     // .join to remove random comma's that are random.
+
+// create an function to add products to the cart.
+function add(index){
+    purchaseditems.push(products[index])
+    localStorage.setItem('purchaseditems',JSON.stringify(purchaseditems))
 }
 
-// Event listener for adding items to the cart
-main.addEventListener('click', function () {
-    if (event.target.hasAttribute('data-add')) {
-        add(event.target.value);
+// add an eventlistener to the add button.
+main.addEventListener('click',function(){
+    if(event.target.hasAttribute('data-add')){
+        // alert('button')
+        add(event.target.value)     //the line will  add the function to  (data-add ) to all buttons in the main
     }
-});
+})
 
+    
