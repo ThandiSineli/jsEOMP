@@ -9,13 +9,17 @@ let products = JSON.parse(localStorage.getItem('products'))
 main.innerHTML =  products.map(function(item, index){
      
     return `
-    <div>
-        <h2>${item.name}</h2>
-        <p><img src = '${item.url}'></p>
-        <p>${item.description}</p>
-        <p>${item.price}</p>
+     <div>
+ <div class="card">
+       
+        <div class="card-body-col-md-6" style="max-width: 16rem">
+        <img src="${item.url}" class="card-img-top" alt="...">
+          <p class="card-text"><h2>${item.name}</h2></p>
+          <p class="card-text">${item.description}</p>
+          <p class="card-text">${item.price}</p>
+          <button class="card-text">${item.size}</button>
 
-        <button value = '${index}' data-add>Add to cart</button>
+ <button value = '${index}' data-add>Add to cart</button>
     </div>
 `
 
@@ -34,6 +38,8 @@ main.addEventListener('click',function(){
         // alert('button')
         add(event.target.value)     //the line will  add the function to  (data-add ) to all buttons in the main
     }
+    
 })
 
-    
+
+  
