@@ -20,11 +20,11 @@ let myItem2 = new MyItems("Cargo Pant", "Cream Cargo Pants", 449.99, " 6 , 8 , 1
 
 let myItem3 = new MyItems( "Mini skirt", "Black Anantomy Utility Skirt" , 349.99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/5NtyyLHN/Black-Anatomy-utility-skirt.png" )
 
-let myItem4 = new MyItems("Denim Skirt", "Black Maxi Denim Skirt with slit", 379,99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/dVNwfxn8/black-skirt-styled.png" )
+let myItem4 = new MyItems("Denim Skirt", "Black Maxi Denim Skirt with slit", 37999, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/dVNwfxn8/black-skirt-styled.png" )
 
-let myItem5 = new MyItems("Maxi Dress", "Cream Rib Johnny collar sleeveless dress", 299,99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/T1cJ2m4X/Rib-Johnney-collar-Sleeveless-Dress-1.png" )
+let myItem5 = new MyItems("Maxi Dress", "Cream Rib Johnny collar sleeveless dress", 299.99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/T1cJ2m4X/Rib-Johnney-collar-Sleeveless-Dress-1.png" )
 
-let myItem6 = new MyItems("Black Dress", "Soft slip Maxi Dress", 199,99, "6, 8, 10, 12", "https://i.postimg.cc/rFBZhC2f/Soft-maxi-slip-dress.png" )
+let myItem6 = new MyItems("Black Dress", "Soft slip Maxi Dress", 199.99, "6, 8, 10, 12", "https://i.postimg.cc/rFBZhC2f/Soft-maxi-slip-dress.png" )
 
 // Push the items into an array.
 products.push(myItem1,myItem2,myItem3,myItem4,myItem5,myItem6)
