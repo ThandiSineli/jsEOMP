@@ -27,7 +27,7 @@ function displayCheckout() {
                     <td>${item.description}</td>
                     <td>R${item.price}</td>
                     <td>${item.quantity}</td>
-                    <td><img src='${item.url}' alt='Product Image'> <button>Delete</button></td>
+                    <td><img src='${item.url}' alt='Product Image'> </td>
                    
 
                 </tr>
@@ -52,5 +52,7 @@ let purchaseButton = document.getElementById('purchaseBtn');
 purchaseButton.addEventListener('click', function() {
     // This code will run when the purchase button is clicked
     alert('Thank you for your purchase!');
-    // You can add more functionality here, like updating the cart or redirecting to a confirmation page
+  
 });
+
+

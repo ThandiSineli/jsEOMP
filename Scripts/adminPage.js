@@ -68,7 +68,7 @@ function removeProduct(position) {
     displayProducts(); 
 }
 
-// Display products when the window loads
+
 window.onload = function() {
     displayProducts();
 };
