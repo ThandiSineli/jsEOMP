@@ -1,6 +1,6 @@
 
 
-header {
+ header {
   background-color: black;
   color: white;
   text-align: center;
@@ -14,16 +14,19 @@ h1 {
 
 
 body {
-  /* background-color :#ffffff(248, 236, 215);  */
-  /* font-family: 'Sofia', sans-serif; */
+  
   margin: 0;
   padding: 0;
 }
 
+ main {
+    width: 80%;
+    margin: 0 auto;
+} 
 
 
 /* Footer styling */
-footer {
+ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -31,29 +34,32 @@ footer {
   color: white;
   text-align: center;
   padding: 10px 0;
-}
+} 
+  
+   
+   
 
 
 
-nav {
-  /* background-color:rgb(247, 235, 213); / */
-  background-color:rgb(248, 236, 215);
+ nav { 
+   background-color:rgb(247, 235, 213);
+   background-color:rgb(248, 236, 215);
   text-align: center;
   padding: 10px 0;
-}
+} 
 
-nav a {
+ nav a {
   display: inline-block;
   padding: 10px 20px;
   text-decoration: none;
   color: black; 
   transition: background-color 0.3s ease;
-}
+} 
 
-nav a:hover {
+ nav a:hover {
   background-color: white;
   color: gray; 
-}
+} 
 
 
 
@@ -61,23 +67,28 @@ nav a:hover {
 p{
     text-align: center;
 }
-
+ 
 
 
 /* home page styling */
 
-.home{
+.section{
   background-image: url('https://i.postimg.cc/xChfGKjz/abstract-blur-shopping-mall.jpg');
+  width: 100vw;
+  height: 80vh;
 
 }
 
-/*  about section */
-.about {
+  about section */
+ .about {
   padding: 50px 20px;
   background-color: white; 
   color: #333; 
 }
-
+h2{
+  text-align: center;
+  margin-top: 50px;
+}
 
 
 .about-content {
@@ -96,7 +107,7 @@ p{
   margin-right: 70px;
   color: #222;
   text-align: left;
- animation-fill-mode: 
+
  }
 
 .about-content p {
@@ -133,11 +144,13 @@ p{
 .card2 {
   display: grid;
   grid-template-columns: repeat(3, 2.5fr);
+  margin: auto;
 
 }
 
  .admin{
       display: grid;
+
     }
 
     /*  checkout */
@@ -194,7 +207,24 @@ label {
   }
 
 
+button {
+  
+  color: black;
+ background-color: white;
+
+   border: 1px solid black;
+ padding: 8px 16px;
+  margin: 5px;
+/* Add hover effect */
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
+button:hover {
+  background-color: black;
+  color: white;
+}
 
 
    
-  
+   
