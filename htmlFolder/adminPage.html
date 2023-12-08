@@ -23,25 +23,20 @@
 <body>
     <main class="admin">
       <table id="my-table">
-        <!-- <tr>
-          <td>Name</td>
-          <td>Description</td>
-          <td>Price:</td>
-          <td><button>Size:</button></td>
-          <td>Url</td>
-          <td></td> -->
-        <!-- <td><button>Edit</button></td>
-          <td><button>Del</button></td> -->
-      <!-- </tr>
-        <th>Name:</th>
-        <tr>
-        <td>Description:</td> </tr>
-        
-       <tr> <td>Price:</td></tr>
-       <tr> <td>Size:</td>
-      </tr> -->
+         </table>
+         <div id="myModal" class="modal">
+          <div class="modal-content">
+              <span class="close">&times;</span>
+              <h2>Edit Product</h2>
+              <form id="editForm">
+                  <input type="text" id="editName" placeholder="Product Name">
+                  <input type="text" id="editDescription" placeholder="Product Description">
+                  <input type="number" id="editPrice" placeholder="Product Price">
+                  <button type="submit">Save Changes</button>
+              </form>
+          </div>
+      </div>
       
-    </table>
 
     </main>
     
