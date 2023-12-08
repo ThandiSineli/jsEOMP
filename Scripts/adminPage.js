@@ -1,4 +1,5 @@
 // Admin page  = localStorage and Product page is pulling from localStorage
+// can use bootsrap to create a modal
 
 // Create an empty array to store all the items.
 let products = [];
@@ -50,7 +51,7 @@ function displayProducts() {
                 <td>${item.name}</td>
                 <td>R${item.price}</td>
                 <td>${item.description}</td>
-                <td><img src="${item.url}" style="max-width: 100px;"></td>
+                <td class=""><img src="${item.url}" style="width: 50px;"></td>
                 <td><button class='edit' value='${index}'>Edit</button></td>
                 <td><button class='delete' value='${index}'>Del</button></td>
             </tr>
@@ -64,7 +65,7 @@ function displayProducts() {
 function removeProduct(position) {
     products.splice(position, 1);
     localStorage.setItem('products', JSON.stringify(products));
-    displayProducts(); // Refresh the displayed products after deletion
+    displayProducts(); 
 }
 
 // Display products when the window loads
@@ -72,31 +73,33 @@ window.onload = function() {
     displayProducts();
 };
 
-// Event delegation for the delete button
+// set up an eventhandler to the table so it can remove a certain item when triggered.
 table.addEventListener('click', function(event) {
     if (event.target.classList.contains('delete')) {
-        let index = event.target.value; // Get the index of the item to delete
-        removeProduct(index); // Call the function to remove the item
+        // get items to delete from the list of 
+        let index = event.target.value; 
+        removeProduct(index); 
     }
 });
 
-// editing modal
+// editing button returns a  (modal)
+// modal can be opened by clicking on the edit button to edit the product.
 
-
-// Function to display the modal for editing a product
+// modal function
 function openModal(index) {
     let modal = document.getElementById('myModal');
+    
     let span = document.getElementsByClassName('close')[0];
     let product = products[index];
 
-    modal.style.display = 'block'; // Display the modal
+    modal.style.display = 'block'; 
 
-    // Populate the modal inputs with existing product details
+    // the inputs to be refilled in the modal
     document.getElementById('editName').value = product.name;
     document.getElementById('editDescription').value = product.description;
     document.getElementById('editPrice').value = product.price;
 
-    // Close the modal when the user clicks the 'x' button
+    // this removes the modal(X)
     span.onclick = function() {
         modal.style.display = 'none';
     };
@@ -115,16 +118,17 @@ function openModal(index) {
         product.description = document.getElementById('editDescription').value;
         product.price = document.getElementById('editPrice').value;
 
-        modal.style.display = 'none'; // Close the modal
+        // Close the modal
+        modal.style.display = 'none'; 
         localStorage.setItem('products', JSON.stringify(products)); // Update local storage
-        displayProducts(); // Update and display the products
+        displayProducts(); 
     });
 }
 
-// Event listener for the edit button
+// Event listener for the edit button open the modal to edit certain products
 table.addEventListener('click', function(event) {
     if (event.target.classList.contains('edit')) {
         let index = event.target.value;
-        openModal(index); // Open the modal for editing the specific product
+        openModal(index); 
     }
 });

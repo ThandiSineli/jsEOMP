@@ -1,8 +1,9 @@
-
+// pull from product page, call table from the html
 let purchaseditems = JSON.parse(localStorage.getItem('purchaseditems')) || [];
 let table = document.querySelector('#checkoutTable');
 let totalAmountElement = document.querySelector('#totalAmount');
 
+// display the array of purchased items in a table on the checkout page
 function displayCheckout() {
     let tableContent = '';
 
@@ -18,7 +19,7 @@ function displayCheckout() {
                 <th>Image</th>
             </tr>
         `;
-
+// loop through the array and display the details 
         purchaseditems.forEach(item => {
             tableContent += `
                 <tr>
@@ -26,7 +27,9 @@ function displayCheckout() {
                     <td>${item.description}</td>
                     <td>R${item.price}</td>
                     <td>${item.quantity}</td>
-                    <td><img src='${item.url}' alt='Product Image'></td>
+                    <td><img src='${item.url}' alt='Product Image'> <button>Delete</button></td>
+                   
+
                 </tr>
             `;
         });
@@ -41,3 +44,13 @@ function displayCheckout() {
 window.onload = function() {
     displayCheckout();
 };
+
+// Get the reference to the purchase button element
+let purchaseButton = document.getElementById('purchaseBtn');
+
+// Add a click event listener to the purchase button
+purchaseButton.addEventListener('click', function() {
+    // This code will run when the purchase button is clicked
+    alert('Thank you for your purchase!');
+    // You can add more functionality here, like updating the cart or redirecting to a confirmation page
+});
