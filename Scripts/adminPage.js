@@ -20,7 +20,7 @@ let myItem2 = new MyItems("Cargo Pant", "Cream Cargo Pants", 449.99, " 6 , 8 , 1
 
 let myItem3 = new MyItems( "Mini skirt", "Black Anantomy Utility Skirt" , 349.99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/5NtyyLHN/Black-Anatomy-utility-skirt.png" )
 
-let myItem4 = new MyItems("Denim Skirt", "Black Maxi Denim Skirt with slit", 37999, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/dVNwfxn8/black-skirt-styled.png" )
+let myItem4 = new MyItems("Denim Skirt", "Black Maxi Denim Skirt with slit", 379.99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/dVNwfxn8/black-skirt-styled.png" )
 
 let myItem5 = new MyItems("Maxi Dress", "Cream Rib Johnny collar sleeveless dress", 299.99, " 6 , 8 , 10 , 12" , "https://i.postimg.cc/T1cJ2m4X/Rib-Johnney-collar-Sleeveless-Dress-1.png" )
 
@@ -42,56 +42,89 @@ products = JSON.parse(localStorage.getItem("products"))
 let table = document.querySelector('table')
 
 // Function to generate table rows for each product
-window.onload = function thisFunction() {
-    let theseItems = products.map(function(item, index){ 
-        console.log(item)
-        console.log(index)
+function displayProducts() {
+    let theseItems = products.map(function(item, index) {
         return `
-         <tr>
-                <td>${index + 1}</td>
+            <tr>
+            <td>${index +1}</td>
                 <td>${item.name}</td>
                 <td>R${item.price}</td>
                 <td>${item.description}</td>
                 <td><img src="${item.url}" style="max-width: 100px;"></td>
-                <td><button>Edit</button></td>
+                <td><button class='edit' value='${index}'>Edit</button></td>
                 <td><button class='delete' value='${index}'>Del</button></td>
             </tr>
-        `
-    })
-    
-    function remove(position){
-        products.splice(position,1)
-        favourite()
-        thisFunction()
-    }
-
-    table.innerHTML = theseItems.join('')
-
-}
-
-
-function favourite(){
-    localStorage.setItem('products',JSON.stringify(products))
-    products = JSON.parse(localStorage.getItem('products'))
-}
-
-
-
-
-
-   
-
-
-    // You will need an event listener for the delete button
-    table.addEventListener('click', function () {
-        if (event.target.classList.contains('delete')) {
-            remove(event.target.value)
-            // Perform delete operation for the product at the given index
-            products.splice(index, 1)
-            // Update the localStorage after deletion
-            localStorage.setItem("products", JSON.stringify(products));
-            // Regenerate the table rows after deletion
-            table.innerHTML = thisFunction(products)
-        }
+        `;
     });
 
+    table.innerHTML = theseItems.join('');
+}
+
+// Function to remove a product at a given position
+function removeProduct(position) {
+    products.splice(position, 1);
+    localStorage.setItem('products', JSON.stringify(products));
+    displayProducts(); // Refresh the displayed products after deletion
+}
+
+// Display products when the window loads
+window.onload = function() {
+    displayProducts();
+};
+
+// Event delegation for the delete button
+table.addEventListener('click', function(event) {
+    if (event.target.classList.contains('delete')) {
+        let index = event.target.value; // Get the index of the item to delete
+        removeProduct(index); // Call the function to remove the item
+    }
+});
+
+// editing modal
+
+
+// Function to display the modal for editing a product
+function openModal(index) {
+    let modal = document.getElementById('myModal');
+    let span = document.getElementsByClassName('close')[0];
+    let product = products[index];
+
+    modal.style.display = 'block'; // Display the modal
+
+    // Populate the modal inputs with existing product details
+    document.getElementById('editName').value = product.name;
+    document.getElementById('editDescription').value = product.description;
+    document.getElementById('editPrice').value = product.price;
+
+    // Close the modal when the user clicks the 'x' button
+    span.onclick = function() {
+        modal.style.display = 'none';
+    };
+
+    // Close the modal when the user clicks outside the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+    // Update the product details when the user submits the form
+    document.getElementById('editForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        product.name = document.getElementById('editName').value;
+        product.description = document.getElementById('editDescription').value;
+        product.price = document.getElementById('editPrice').value;
+
+        modal.style.display = 'none'; // Close the modal
+        localStorage.setItem('products', JSON.stringify(products)); // Update local storage
+        displayProducts(); // Update and display the products
+    });
+}
+
+// Event listener for the edit button
+table.addEventListener('click', function(event) {
+    if (event.target.classList.contains('edit')) {
+        let index = event.target.value;
+        openModal(index); // Open the modal for editing the specific product
+    }
+});

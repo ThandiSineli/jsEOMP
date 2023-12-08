@@ -1,45 +1,55 @@
-// get products from the adminpage(pull items)
-// you need a an empty array for the items
-let purchaseditems = []
-let main = document.querySelector('main')
-// get products from the localstorage in order for the products on the page to depent on what is shown  or removed in the admin page.
+let purchaseditems = JSON.parse(localStorage.getItem('purchaseditems')) || [];
+let main = document.querySelector('main');
+let products = JSON.parse(localStorage.getItem('products'));
 
-let products = JSON.parse(localStorage.getItem('products'))
-// for every object in the array you must include a div for for all items
-main.innerHTML =  products.map(function(item, index){
-     
-    return `
-     <div>
- <div class="card">
-       
-        <div class="card-body-col-md-6" style="max-width: 16rem">
-        <img src="${item.url}" class="card-img-top" alt="...">
-          <p class="card-text"><h2>${item.name}</h2></p>
-          <p class="card-text">${item.description}</p>
-          <p class="card-text">${item.price}</p>
-          <button class="card-text">${item.size}</button>
+function displayProducts(items) {
+    main.innerHTML = items.map((item, index) => {
+        return `
+            <div class="col-md-4 mb-3" style="width: 100%">
+                <div class="card">
+                    <img src="${item.url}" class="card-img-top" alt="${item.name}">
+                    <div class="card-body">
+                        <h2>${item.name}</h2>
+                        <p>${item.description}</p>
+                        <p>${item.price}</p>
+                        <button class="btn btn-dark add-to-cart" data-index="${index}">Add to cart</button>
+                    </div>
+                </div>
+            </div>`;
+    }).join('');
 
- <button value = '${index}' data-add>Add to cart</button>
-    </div>
-`
+    
 
-   
-}).join('')     // .join to remove random comma's that are random.
-
-// create an function to add products to the cart.
-function add(index){
-    purchaseditems.push(products[index])
-    localStorage.setItem('purchaseditems',JSON.stringify(purchaseditems))
+    let addButtons = document.querySelectorAll('.add-to-cart');
+    addButtons.forEach(button => {
+        button.addEventListener('click', function(event) {
+            let index = event.target.getAttribute('data-index');
+            addProductToCart(index);
+        });
+    });
 }
 
-// add an eventlistener to the add button.
-main.addEventListener('click',function(){
-    if(event.target.hasAttribute('data-add')){
-        // alert('button')
-        add(event.target.value)     //the line will  add the function to  (data-add ) to all buttons in the main
+function addProductToCart(index) {
+    let productToAdd = products[index];
+    let existingItem = purchaseditems.find(item => item.name === productToAdd.name);
+
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        productToAdd.quantity = 1;
+        purchaseditems.push(productToAdd);
     }
-    
-})
+
+    localStorage.setItem('purchaseditems', JSON.stringify(purchaseditems));
+    loadCheckout();
+}
+
+function loadCheckout() {
+    // Redirect to the checkout page or update its content based on purchaseditems
+}
+
+window.onload = function() {
+    displayProducts(products);
+};
 
 
-  
