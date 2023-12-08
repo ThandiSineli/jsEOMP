@@ -39,7 +39,7 @@ body {
    
    
 
-
+/* nav */
 
  nav { 
    background-color:rgb(247, 235, 213);
@@ -154,10 +154,12 @@ p{
     }
 
     /*  checkout */
+
+
 #checkoutTable {
-  
   border-collapse: collapse;
   margin-top: 20px;
+  width: 90%; 
 }
 
 #checkoutTable th,
@@ -166,14 +168,13 @@ p{
   padding: 10px;
 }
 
-.checkout-table th {
- 
+#checkoutTable th.checkout-table {
   font-weight: bold;
 }
 
-.checkout-table td img {
-  max-width: 50px;
-  max-height: 50px;
+#checkoutTable td img {
+  max-width: 50px; 
+  max-height: 50px; 
   vertical-align: middle;
 }
 
@@ -225,6 +226,50 @@ button:hover {
   color: white;
 }
 
+/* search */
 
-   
-   
+   #searchInput {
+  margin-right: 80px; 
+   }
+
+#searchBtn {
+  vertical-align: top;
+  margin-right: left; 
+}
+
+/* can it work on mobile */
+
+
+@media screen and (max-width: 700px) and (min-height: 300px) {
+  html {
+    background-color: lightcoral;
+  }
+}
+@-o-keyframes(.about-content){
+  h1{
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+  }
+
+/* contact */
+
+/* Ensure the body and HTML take the full viewport height */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+
+#Contacts {
+  min-height: 100vh;
+  padding-top: 20px; 
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+ 
+}
+
+

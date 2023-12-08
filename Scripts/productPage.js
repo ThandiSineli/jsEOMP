@@ -65,4 +65,3 @@ document.getElementById('searchBtn').addEventListener('click', function () {
 window.onload = function() {
     displayProducts(products);
 };
-
